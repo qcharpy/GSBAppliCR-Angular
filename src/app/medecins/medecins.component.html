@@ -1,0 +1,11 @@
+<h2 style="margin-top: 10%;">{{title}}</h2>
+<br><br>
+<div class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Rechercher un médecin"
+         aria-label="Search" [(ngModel)]="name" (input)="onSearchMedecin()">
+</div>
+<ul class="list-group">
+  <app-medecins-list *ngFor="let item of medecins" [id]="item.id" [name]="item.nom" [firstname]="item.prenom" [address]="item.adresse" [tel]="item.tel" [spec]="item.specialitecomplementaire"
+    [dep]="item.departement"></app-medecins-list>
+</ul>

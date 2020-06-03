@@ -1,0 +1,68 @@
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>Modifier</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Modifier un Médecin</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <h4>{{name}}</h4>
+        <br>
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="capsules" class="prefix grey-text"></mdb-icon>
+          <input name="compo" type="text" id="defaultForm-compo" [formControl]="updMedicFormModalCompo" class="form-control"
+                 mdbInput mdbValidate [(ngModel)]="compo">
+          <label for="defaultForm-compo">Composition</label>
+          <mdb-error
+            *ngIf="updMedicFormModalCompo.invalid && (updMedicFormModalCompo.dirty || updMedicFormModalCompo.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="updMedicFormModalCompo.valid && (updMedicFormModalCompo.dirty || updMedicFormModalCompo.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form">
+          <mdb-icon fas icon="notes-medical" class="prefix grey-text"></mdb-icon>
+          <textarea name="effect" type="text" id="defaultForm-effect" [formControl]="updMedicFormModalEffect" rows="10" class="md-textarea md-textarea-auto form-control"
+                 mdbInput mdbValidate [(ngModel)]="effect"></textarea>
+          <label for="defaultForm-effect">Effets</label>
+          <mdb-error
+            *ngIf="updMedicFormModalEffect.invalid && (updMedicFormModalEffect.dirty || updMedicFormModalEffect.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="updMedicFormModalEffect.valid && (updMedicFormModalEffect.dirty || updMedicFormModalEffect.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form">
+          <mdb-icon fas icon="exclamation-circle" class="prefix grey-text"></mdb-icon>
+          <input name="contreIndic" type="text" id="defaultForm-contreIndic" [formControl]="updMedicFormModalContreIndic" class="form-control"
+                 mdbInput mdbValidate [(ngModel)]="contreIndic">
+          <label for="defaultForm-contreIndic">Contre Indication</label>
+          <mdb-error
+            *ngIf="updMedicFormModalContreIndic.invalid && (updMedicFormModalContreIndic.dirty || updMedicFormModalContreIndic.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="updMedicFormModalContreIndic.valid && (updMedicFormModalContreIndic.dirty || updMedicFormModalContreIndic.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="frame.hide(); onCancel()" mdbWavesEffect>Annuler</button>
+        <button mdbBtn color="default" class="relative waves-light" mdbWavesEffect (click)="onSubmit(); frame.hide()">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>

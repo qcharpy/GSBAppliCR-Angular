@@ -1,0 +1,22 @@
+<div class="d-flex flex-column" style="margin-top: 10%;">
+  <div class="p-2 pb-3 d-flex flex-row d-flex justify-content-between align-items-center">
+    <div class="md-form m-0">
+      <input type="date" id="filtreDate" class="form-control" mdbInput [(ngModel)]="dateVisiteRecherche"
+        (change)="filtrageRapportsVisites()" [max]="datePipe.transform(this.dateJour, 'yyyy-MM-dd')">
+      <label for="filtreDate">Choisissez une date</label>
+    </div>
+    <div class="md-form m-0 w-25 d-flex flex-row align-items-center flex-nowrap">
+      <mdb-icon fas icon="search" class="d-flex flex-column justify-content-center mr-1"></mdb-icon>
+      <input class="form-control mr-sm-2 w-100" type="text" placeholder="Rechercher un médecin"
+        [(ngModel)]="medecinRecherche" (input)="filtrageRapportsVisites()">
+    </div>
+    <button mdbBtn type="button" color="primary" mdbWavesEffect class="d-flex flex-row align-items-center" (click)="OuvrirModalRapportsVisites()">
+      <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>
+      Nouveau
+    </button>
+  </div>
+
+  <app-table-rapports-visites [modalRapportsVisites]="this.modalRapportsVisites"></app-table-rapports-visites>
+  <app-modal-rapports-visites #modalRapportsVisites></app-modal-rapports-visites>
+
+</div>

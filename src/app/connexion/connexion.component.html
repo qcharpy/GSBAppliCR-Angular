@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+</head>
+<body>
+<!-- Formulaire de connexion  -->
+<div class="form-container" style="margin-top: 10%; margin-left: 20%; margin-right: 20%; margin-bottom: 2%; text-align: center;">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSignIn()"form class="text-center border border-light p-5">
+        <div class="form-group">
+
+          <!-- Logo -->
+          <div>
+            <img src="../../assets/logo1.jpg"  class="img-fluid"  alt="LogoGSB" />
+          </div>
+<br>
+          <!-- Affichage d'un msg d'erreur si le login ou le mdp est incorrect -->
+          <div class="alert alert-danger animated shake" *ngIf="erreur">
+            <i class="fas fa-exclamation-triangle">  Login ou mot de passe incorrect</i>
+          </div>
+
+          <!-- Login et mdp -->
+          <div class="form-group">
+            <input formControlName="login" type="text" id="login" name="login" class="form-control" placeholder="Login">
+<br>
+            <input formControlName="mdp" type="password" id="mdp" name="mdp" class="form-control"placeholder="Mot de passe">
+          </div>
+          <div>
+            <!-- Bouton connexion -->
+            <button class="btn btn-primary waves-light" mdbWavesEffect type="submit" [disabled]="loginForm.invalid">Connexion</button>
+          </div>
+        </div>
+  </form>
+</div>
+

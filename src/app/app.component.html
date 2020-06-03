@@ -1,0 +1,54 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark blue fixed-top scrolling-navbar">
+
+  <!-- Navbar brand Logo -->
+  <mdb-navbar-brand>
+    <a class="navbar-brand">
+        <img src="../assets/logo1.jpg" height="30" alt="logo">
+    </a>
+</mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Onglets du menu accessible quand l'utilisateur est connecté -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item" *ngIf="this.AuthService.IsAuth">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="accueil" routerLinkActive="active">
+                Accueil
+              </a>
+          </li>
+          <li class="nav-item" *ngIf="this.AuthService.IsAuth">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="medicaments" routerLinkActive="active">
+                Médicaments
+              </a>
+          </li>
+          <li class="nav-item" *ngIf="this.AuthService.IsAuth">
+              <a class="nav-link waves-light" mdbWavesEffect routerLink="medecins" routerLinkActive="active">
+                Médecins
+              </a>
+          </li>
+          <li class="nav-item" *ngIf="this.AuthService.IsAuth">
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="visites" routerLinkActive="active">
+              Mes visites
+            </a>
+        </li>
+      </ul>
+
+      <!-- Bouton déconnexion qui apparaît quand l'utilisateur est connecté-->
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <button type="button" class="btn btn-danger waves-light" mdbWavesEffect [hidden]="!this.AuthService.IsAuth" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>Déconnexion
+        </button>
+      </ul>
+
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+<div class="container">
+  <br>
+  <router-outlet></router-outlet>
+</div>

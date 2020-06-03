@@ -1,0 +1,69 @@
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>Modifier</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Modifier un Médecin</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <h4>{{name}} {{firstName}}</h4>
+        <br>
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="home" class="prefix grey-text"></mdb-icon>
+          <input name="adresse" type="text" id="defaultForm-addr" [formControl]="updMedecinFormModalAddr" class="form-control"
+                 mdbInput mdbValidate [(ngModel)]="addr">
+          <label for="defaultForm-addr">Adresse</label>
+          <mdb-error
+            *ngIf="updMedecinFormModalAddr.invalid && (updMedecinFormModalAddr.dirty || updMedecinFormModalAddr.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="updMedecinFormModalAddr.valid && (updMedecinFormModalAddr.dirty || updMedecinFormModalAddr.touched)">Input
+            valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="phone" class="prefix grey-text"></mdb-icon>
+          <input name="tel" type="text" id="defaultForm-tel" [formControl]="updMedecinFormModalPhone" class="form-control"
+                 mdbInput mdbValidate [(ngModel)]="phone">
+          <label for="defaultForm-tel">Téléphone</label>
+          <mdb-error
+            *ngIf="updMedecinFormModalPhone.invalid && (updMedecinFormModalPhone.dirty || updMedecinFormModalPhone.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="updMedecinFormModalPhone.valid && (updMedecinFormModalPhone.dirty || updMedecinFormModalPhone.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+        <div class="md-form mb-4">
+          <mdb-icon fas icon="user-md" class="prefix grey-text"></mdb-icon>
+          <input name="special" type="text" id="defaultForm-spec" [formControl]="updMedecinFormModalSpec" class="form-control"
+                 mdbInput mdbValidate [(ngModel)]="spec">
+          <label for="defaultForm-spec">Spécialité Complémentaire</label>
+          <mdb-error
+            *ngIf="updMedecinFormModalSpec.invalid && (updMedecinFormModalSpec.dirty || updMedecinFormModalSpec.touched)">
+            Input invalid
+          </mdb-error>
+          <mdb-success
+            *ngIf="updMedecinFormModalSpec.valid && (updMedecinFormModalSpec.dirty || updMedecinFormModalSpec.touched)">
+            Input valid
+          </mdb-success>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="frame.hide(); onCancel()" mdbWavesEffect>Annuler</button>
+        <button mdbBtn color="default" class="relative waves-light" mdbWavesEffect (click)="onSubmit(); frame.hide()">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>

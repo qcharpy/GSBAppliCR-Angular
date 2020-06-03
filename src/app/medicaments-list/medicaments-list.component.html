@@ -1,0 +1,19 @@
+<li class="list-group-item">
+  <h4>Ref : {{ref}}</h4>
+  <span STYLE="padding:0 0 0 60px;"></span>{{name}}
+  <div class="text-right">
+    <button mdbBtn type="button" color="primary" mdbWavesEffect class="btn btn-primary btn-rounded" style="margin-right: 10px;" (click)="onGetMedic()">Plus d'info</button>
+  </div>
+  <div [ngStyle]="{'display' : visible === true ? 'contents' : 'none'}">
+    <strong>Famille : </strong>{{idFam}}<br>
+    <strong>Composition : </strong>{{compo}}<br>
+    <strong>Effets : </strong>{{effect}}<br>
+    <strong>Contre indications : </strong>{{contraindication}}
+    <br><br>
+    <div *ngIf="update">
+      <app-form-update-medic [ref]="ref" [name]="name" [compo]="compo" [effect]="effect" [contreIndic]="contraindication"></app-form-update-medic>
+    </div>
+  </div>
+</li>
+<br>
+

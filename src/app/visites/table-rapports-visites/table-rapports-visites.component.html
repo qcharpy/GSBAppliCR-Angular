@@ -1,0 +1,26 @@
+<table mdbTable #tableEl="mdbTable" class="z-depth-1">
+    <thead>
+    <tr>
+      <th *ngFor="let laColonne of colonnes; let i = index" scope="col">{{laColonne}}
+      </th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let leRapport of lesRapports; let i = index" [ngClass]="{'table-info': i % 2 === 1}">
+      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+          scope="row">{{leRapport.id}}</th>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="align-middle">{{leRapport.date}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="align-middle">{{leRapport.prenom + " " + leRapport.nom}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="align-middle">{{leRapport.motif}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex" class="p-0 align-middle"><button (click)="modalRapportsVisites.Ouvrir(lesRapports[i])" type="button" mdbBtn color="dark" mdbWavesEffect class="p-2 px-4 m-0 d-flex flex-row justify-content-center align-items-center"><mdb-icon fas icon="pen" class="mr-1"></mdb-icon>Modifier</button></td>
+    </tr>
+    </tbody>
+    <tfoot class="grey lighten-5 w-100">
+    <tr>
+      <td colspan="4">
+        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="lesRapports"></mdb-table-pagination>
+      </td>
+    </tr>
+    </tfoot>
+  </table>

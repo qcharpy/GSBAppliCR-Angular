@@ -1,0 +1,105 @@
+<div style="overflow-y: auto" mdbModal #modalRapportsVisites="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="modalRapportsVisites" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header primary-color">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRapportsVisites.hide()">
+          <span aria-hidden="true" class="text-white">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-white" id="myModalLabel">Modal title</h4>
+      </div>
+
+
+      <div class="modal-body">
+
+
+        <form [formGroup]="formRapport">
+          <fieldset class="w-100">
+            <legend>Informations</legend>
+            <div class="form-row">
+
+              <div class="form-group col-md-6">
+                <label for="dateVisite">Date de la visite</label>
+                <input type="date" id="dateVisite" class="form-control" mdbInput formControlName="dateVisite">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="medecin">Medecin</label>
+                <select class="browser-default custom-select" id="medecin" formControlName="medecin">
+                  <option *ngIf="this.formRapport.controls['medecin'].value === ''" value="" selected>Sélectionnez un médecin</option>
+                  <option *ngFor="let leMedecin of listeMedecins ; let i = index" value="{{i}}">{{leMedecin.prenom}} {{leMedecin.nom}}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="motifVisite">Motif de la visite</label>
+              <input mdbInput type="text" class="form-control" id="motifVisite" placeholder="Motif" formControlName="motifVisite">
+            </div>
+
+            <div class="form-group">
+              <label for="bilan">Bilan</label>
+              <textarea mdbInput class="form-control" id="bilan" placeholder="Bilan" rows="3" formControlName="bilan"></textarea>
+            </div>
+
+          </fieldset>
+
+          <fieldset>
+            <legend>Médicaments offerts</legend>
+
+            <div class="form-group">
+              <label for="medicaments">Médicaments</label>
+              <div class="input-group mb-2 w-100" id="medicaments">
+                <select class="browser-default custom-select" formControlName="medicament">
+                  <option *ngIf="this.formRapport.controls['medicament'].value === ''" value="" selected>Ajoutez des médicaments offerts</option>
+                  <option *ngFor="let leMedoc of listeMedicaments ; let i = index" value="{{i}}">{{leMedoc.nomCommercial}}</option>
+                </select>
+
+                <div class="input-group-append">
+                  <button mdbBtn color="success" size="md" class="m-0 px-3 py-2" type="button" id="ajouter"
+                    mdbWavesEffect (click)="AjouterMedicamentOffert()">
+                    <mdb-icon fas icon="plus" class="mr-1"></mdb-icon>
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <table class="table table-striped w-100">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Nom</th>
+                  <th>Famille</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let leMedicament of medicamentsSelect; let i = index" [ngClass]="{'table-info': i % 2 === 1}">
+                  <th scope="row" class="align-middle">{{leMedicament.id}}</th>
+                  <td class="align-middle">{{leMedicament.nomCommercial}}</td>
+                  <td class="align-middle">{{leMedicament.libelleFamille}}</td>
+                  <td class="p-0 align-middle">
+                    <button (click)="SupprimerMedicamentOffert(i)" type="button" mdbBtn color="danger" mdbWavesEffect class="p-2 px-4 m-0 d-flex flex-row justify-content-center align-items-center"><mdb-icon fas icon="trash" class="mr-1"></mdb-icon>Supprimer</button>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+
+          </fieldset>
+        </form>
+
+
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="success" class="relative waves-light" mdbWavesEffect>Valider</button>
+        <button type="button" mdbBtn color="danger" class="waves-light" aria-label="Annuler"
+          (click)="modalRapportsVisites.hide()" mdbWavesEffect>Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
